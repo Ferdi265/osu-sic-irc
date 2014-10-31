@@ -42,8 +42,8 @@ module.exports = function (username, password) {
 		sic;
 
 	inst.on('end', function () {
-		inst.emit('respawn');
 		sic = spawnSic();
+		inst.emit('respawn');
 	});
 	inst.on('raw', function (data) {
 			var type = null;
@@ -64,15 +64,11 @@ module.exports = function (username, password) {
 	});
 	inst.on('r-auth', function (data) {
 		var msgdata = messageTypes['r-auth'].exec(data);
-		inst.emit('auth', {
-			url: msgdata[1]
-		});
+		inst.emit('auth', msgdata[1]);
 	});
 	inst.on('r-nosuchnick', function (data) {
 		var msgdata = messageTypes['r-nosuchnick'].exec(data);
-		inst.emit('nosuchnick', {
-			nick: msgdata[1]
-		});
+		inst.emit('nosuchnick', msgdata[1]);
 	});
 	inst.send = message;
 	sic = spawnSic();
