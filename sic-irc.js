@@ -33,11 +33,11 @@ module.exports = function (username, password) {
 		})(),
 		inst = new EventEmitter(),
 		messageTypes = {
-			'r-message': RegExp('' + username + '\\s: \\d+/\\d+/\\d+ \\d+:\\d+ <(.*)> (.*)'),
-			'r-auth': RegExp('cho\\.ppy\\.sh\\s: \\d+/\\d+/\\d+ \\d+:\\d+ >< \\d+ \\(' + username + '\\): - (http://osu.ppy.sh/p/ircauth?action=allow&nick=.+&ip=\\d+\\.\\d+\\.\\d+\\.\\d+)'),
-			'r-nosuchnick': RegExp('cho\\.ppy\\.sh\\s: \\d+/\\d+/\\d+ \\d+:\\d+ >< \\d+ \\(' + username + ' (.*)\\): No such nick'),
-			'ready': RegExp('cho\\.ppy\\.sh\\s: \\d+/\\d+/\\d+ \\d+:\\d+ >< \\d+ \\(' + username + '\\): - To get started try joining #osu!'),
-			'badauth': RegExp('cho\\.ppy\\.sh\\s: \\d+/\\d+/\\d+ \\d+:\\d+ >< \\d+ \\(' + username + ' ' + username + '\\): Bad authentication token.')
+			'r-message': RegExp(username + '\\s+: \\d+/\\d+/\\d+ \\d+:\\d+ <(.*)> (.*)'),
+			'r-auth': RegExp('cho\\.ppy\\.sh\\s+: \\d+/\\d+/\\d+ \\d+:\\d+ >< \\d+ \\(' + username + '\\): - (http://osu.ppy.sh/p/ircauth?action=allow&nick=.+&ip=\\d+\\.\\d+\\.\\d+\\.\\d+)'),
+			'r-nosuchnick': RegExp('cho\\.ppy\\.sh\\s+: \\d+/\\d+/\\d+ \\d+:\\d+ >< \\d+ \\(' + username + ' (.*)\\): No such nick'),
+			'ready': RegExp('cho\\.ppy\\.sh\\s+: \\d+/\\d+/\\d+ \\d+:\\d+ >< \\d+ \\(' + username + '\\): - To get started try joining #osu!'),
+			'badauth': RegExp('cho\\.ppy\\.sh\\s+: \\d+/\\d+/\\d+ \\d+:\\d+ >< \\d+ \\(' + username + ' ' + username + '\\): Bad authentication token.')
 		},
 		sic;
 
@@ -47,11 +47,10 @@ module.exports = function (username, password) {
 	});
 	inst.on('raw', function (data) {
 			var type = null;
-			Object.keys(messageTypes).some(function (mtype) {
+			if (Object.keys(messageTypes).some(function (mtype) {
 				type = mtype;
 				return messageTypes[mtype].test(data);
-			});
-			if (type !== null) {
+			})) {
 				inst.emit(type, data);
 			}
 		});
