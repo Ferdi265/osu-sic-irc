@@ -1,4 +1,6 @@
 {
 	"name": "osu-sic-irc",
-	"main": "sic-irc.js"
+	"main": "sic-irc.js",
+	"version": "0.0.1",
+	"dependencies": {}
 }
