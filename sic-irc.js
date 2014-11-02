@@ -17,11 +17,11 @@ module.exports = function (username, password) {
 				timeout = null,
 				dispatch = function () {
 					var msg = queue.pop();
-					timeout = null;
 					if (msg) {
 						sic.stdin.write(':m ' + msg.to + ' ' + msg.text + '\n');
 						timeout = setTimeout(dispatch, 2000);
 					} else {
+						timeout = null;
 					}
 				};
 			return function (to, text) {
