@@ -1,6 +1,26 @@
 {
 	"name": "osu-sic-irc",
 	"main": "sic-irc.js",
-	"version": "0.0.1",
+	"version": "0.0.2",
+	"description": "IRC Client Wrapper for irc.ppy.sh using the SIC irc command line utility",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Ferdi265/osu-sic-irc.git"
+	},
+	"keywords": [
+		"osu",
+		"irc",
+		"module",
+		"sic"
+	],
+	"author": "Ferdi265 <theferdi265@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Ferdi265/osu-sic-irc/issues"
+	},
+	"homepage": "https://github.com/Ferdi265/osu-sic-irc",
 	"dependencies": {}
 }
