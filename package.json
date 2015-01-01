@@ -1,6 +1,6 @@
 {
 	"name": "osu-sic-irc",
-	"main": "sic-irc.js",
+	"main": "index.js",
 	"version": "0.0.2",
 	"description": "IRC Client Wrapper for irc.ppy.sh using the SIC irc command line utility",
 	"scripts": {
